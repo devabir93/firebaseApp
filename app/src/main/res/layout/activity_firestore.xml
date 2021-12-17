@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".firestore.FirestoreActivity">
+
+    <Button
+        android:id="@+id/save_single_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save single item" />
+    <Button
+        android:id="@+id/update_single_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="update single item" />
+
+    <Button
+        android:id="@+id/save_list_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="save list item" />
+    <Button
+        android:id="@+id/read_list_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="read list item" />
+</LinearLayout>

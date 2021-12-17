@@ -1,5 +1,6 @@
-package com.ucas.android.firebaseapp;
+package com.ucas.android.firebaseapp.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,16 +16,17 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ucas.android.firebaseapp.databinding.ActivityMainBinding;
+import com.ucas.android.firebaseapp.databinding.ActivityLoginBinding;
+import com.ucas.android.firebaseapp.firestore.FirestoreActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private ActivityMainBinding binding;
+    private ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
 
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     Toast.makeText(getApplicationContext(), "Welcome" + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), FirestoreActivity.class));
                 } else {
                     Toast.makeText(getApplicationContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     Log.e("error", task.getException().toString());
