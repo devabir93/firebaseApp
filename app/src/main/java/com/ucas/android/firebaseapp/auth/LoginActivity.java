@@ -19,16 +19,22 @@ import com.google.firebase.auth.FirebaseUser;
 import com.ucas.android.firebaseapp.databinding.ActivityLoginBinding;
 import com.ucas.android.firebaseapp.firestore.FirestoreActivity;
 
-public class LoginActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+public class LoginActivity extends BaseActivity {
     private ActivityLoginBinding binding;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(currentUser!=null){
+            startActivity(new Intent(getApplicationContext(), UpdateProfileActivity.class));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        mAuth = FirebaseAuth.getInstance();
 
         binding.register.setEnabled(true);
         binding.login.setEnabled(true);
@@ -82,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     Toast.makeText(getApplicationContext(), "Welcome" + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), FirestoreActivity.class));
+                    startActivity(new Intent(getApplicationContext(), UpdateProfileActivity.class));
                 } else {
                     Toast.makeText(getApplicationContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     Log.e("error", task.getException().toString());
