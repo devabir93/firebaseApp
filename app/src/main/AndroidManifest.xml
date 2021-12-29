@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseApp">
-        <activity android:name=".firestore.FirestoreActivity"/>
-        <activity android:name=".auth.UpdateProfileActivity"/>
-        <activity android:name=".auth.LoginActivity"
-            android:exported="true"
-            >
+        <activity android:name=".storage.StorageActivity"></activity>
+        <activity android:name=".firestore.FirestoreActivity" />
+        <activity android:name=".auth.UpdateProfileActivity" />
+        <activity
+            android:name=".auth.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

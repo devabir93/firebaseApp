@@ -8,16 +8,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ucas.android.firebaseapp.databinding.ActivityLoginBinding;
-import com.ucas.android.firebaseapp.firestore.FirestoreActivity;
+import com.ucas.android.firebaseapp.storage.StorageActivity;
 
 public class LoginActivity extends BaseActivity {
     private ActivityLoginBinding binding;
@@ -25,8 +22,8 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(currentUser!=null){
-            startActivity(new Intent(getApplicationContext(), UpdateProfileActivity.class));
+        if (currentUser != null) {
+            goToNext();
         }
     }
 
@@ -44,8 +41,8 @@ public class LoginActivity extends BaseActivity {
                 binding.loading.setVisibility(View.VISIBLE);
                 String email = binding.username.getText().toString();
                 String password = binding.password.getText().toString();
-                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
-                register(email, password);
+                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
+                    register(email, password);
             }
         });
 
@@ -55,7 +52,7 @@ public class LoginActivity extends BaseActivity {
                 binding.loading.setVisibility(View.VISIBLE);
                 String email = binding.username.getText().toString();
                 String password = binding.password.getText().toString();
-                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
+                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
                     login(email, password);
             }
         });
@@ -79,6 +76,7 @@ public class LoginActivity extends BaseActivity {
         })
         ;
     }
+
     private void login(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -88,7 +86,7 @@ public class LoginActivity extends BaseActivity {
                 if (task.isSuccessful()) {
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     Toast.makeText(getApplicationContext(), "Welcome" + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), UpdateProfileActivity.class));
+                    goToNext();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     Log.e("error", task.getException().toString());
@@ -97,5 +95,9 @@ public class LoginActivity extends BaseActivity {
             }
         })
         ;
+    }
+
+    private void goToNext() {
+        startActivity(new Intent(getApplicationContext(), StorageActivity.class));
     }
 }
