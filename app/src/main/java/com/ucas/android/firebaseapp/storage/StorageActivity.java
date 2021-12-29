@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -40,7 +42,7 @@ public class StorageActivity extends BaseActivity {
         binding.showFilesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StorageActivity.this,AllUserFilesActivity.class));
+                startActivity(new Intent(StorageActivity.this, AllUserFilesActivity.class));
             }
         });
 
@@ -78,6 +80,14 @@ public class StorageActivity extends BaseActivity {
                         "Image Uploaded!!",
                         Toast.LENGTH_SHORT)
                         .show();
+                //this is the new way to do it
+                storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        String profileImageUrl = task.getResult().toString();
+                        Log.i("UploadActivity", profileImageUrl);
+                    }
+                });
             }
         })
                 .addOnFailureListener(new OnFailureListener() {

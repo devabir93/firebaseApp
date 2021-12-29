@@ -20,7 +20,6 @@ public class AllUserFilesActivity extends BaseActivity {
 
     ActivityAllUserFilesBinding binding;
     private FilesAdapter adapter;
-    List<StorageReference> references = new ArrayList<>();
     StorageReference storageReference;
 
     @Override
