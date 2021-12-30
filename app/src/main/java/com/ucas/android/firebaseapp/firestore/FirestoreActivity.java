@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ucas.android.firebaseapp.R;
-import com.ucas.android.firebaseapp.Utils;
+import com.ucas.android.firebaseapp.utils.Utils;
 import com.ucas.android.firebaseapp.databinding.ActivityFirestoreBinding;
 import com.ucas.android.firebaseapp.model.User;
 

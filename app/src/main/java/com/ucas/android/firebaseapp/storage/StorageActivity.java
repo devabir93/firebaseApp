@@ -20,7 +20,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.ucas.android.firebaseapp.auth.BaseActivity;
+import com.ucas.android.firebaseapp.base.BaseActivity;
 import com.ucas.android.firebaseapp.databinding.ActivityStorageBinding;
 
 import java.io.IOException;

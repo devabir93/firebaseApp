@@ -1,4 +1,4 @@
-package com.ucas.android.firebaseapp;
+package com.ucas.android.firebaseapp.utils;
 import android.content.Context;
 
 import com.bumptech.glide.Glide;

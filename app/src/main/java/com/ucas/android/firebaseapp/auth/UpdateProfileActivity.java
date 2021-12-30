@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.ucas.android.firebaseapp.base.BaseActivity;
 import com.ucas.android.firebaseapp.databinding.ActivityUpdateProfileBinding;
 
 public class UpdateProfileActivity extends BaseActivity {
